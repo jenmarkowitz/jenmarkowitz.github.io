@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jen Markowitz – Home Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #000000;
+      font-family: "MS Sans Serif", Tahoma, sans-serif;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .frame {
+      position: relative;
+      max-width: 768px;
+    }
+
+    .frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Invisible hotspot over "Don't Click This" */
+    .dont-click-link {
+      position: absolute;
+      bottom: 6%;
+      right: 8%;
+      width: 30%;
+      height: 6%;
+      text-decoration: none;
+    }
+
+    /* Text nav below image */
+    .nav-links {
+      margin-top: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .nav-links a {
+      color: #9ad1ff;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: none;
+    }
+
+    /* Section styling */
+    section {
+      max-width: 768px;
+      background: #111;
+      padding: 30px;
+      margin-top: 40px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    section h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main image frame -->
+  <div class="frame">
+    <img src="homepage.png" alt="Jen Markowitz homepage">
+
+    <a class="dont-click-link"
+       href="https://beesbeesbeesbees.com/"
+       target="_blank">
+    </a>
+  </div>
+
+  <!-- Navigation links below the image -->
+  <div class="nav-links">
+    <a href="#bio">Bio</a>
+    <a href="#cv">CV</a>
+    <a href="#work">Selected Work</a>
+    <a href="#press">Press</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- SCROLL-TO SECTIONS -->
+
+  <section id="bio">
+    <h2>Bio</h2>
+    <p>Jen Markowitz is an award winning creative in the film and television space, and is experienced in documentary, scripted, and competition reality.</p>
+  </section>
+
+  <section id="cv">
+    <h2>CV</h2>
+    <p><a href="jen-markowitz-cv.pdf" target="_blank">Download my CV</a></p>
+  </section>
+
+  <section id="work">
+    <h2>Selected Work</h2>
+    <p><a href="https://www.youtube.com/watch?v=KE3CIyutfbY" target="_blank">Project 1</a></p>
+    <p><a href="https://www.youtube.com/watch?v=IWYTy60rNMU" target="_blank">Project 2</a></p>
+    <p><a href="https://www.youtube.com/watch?v=awx6EQ4p0HE&t=77s" target="_blank">Project 3</a></p>
+  </section>
+
+  <section id="press">
+    <h2>Press</h2>
+    <p>Add press items here.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:jenmarkowitz@gmail.com">jenmarkowitz@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/jen.markowitz" target="_blank">@jen.markowitz</a></p>
+  </section>
+
+</body>
+</html>
