@@ -1,336 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Jen Markowitz – Home Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+/* ---------------- LIGHTNING OVERLAY ---------------- */
+.lightning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0;
+  animation: lightningFlash 4s infinite;
+  mix-blend-mode: screen;
+  z-index: 5000;
+}
 
-    /* ------------------------------ */
-    /*  LIGHTNING ANIMATION OVERLAY   */
-    /* ------------------------------ */
+@keyframes lightningFlash {
+  0%, 100% { opacity: 0; }
+  8%      { opacity: 0.9; }
+  12%     { opacity: 0; }
+  18%     { opacity: 0.5; }
+  22%     { opacity: 0; }
+}
 
-    .lightning {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      opacity: 0;
-      background-image: url("lightning.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-      animation: lightningFlash 4s infinite;
-      mix-blend-mode: screen;
-      z-index: 2000;
-    }
+/* ---------------- BASIC PAGE LAYOUT ---------------- */
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: #000;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    @keyframes lightningFlash {
-      0%, 100% { opacity: 0; }
-      6% { opacity: 0.9; }
-      9% { opacity: 0; }
-      15% { opacity: 0.5; }
-      17% { opacity: 0; }
-    }
+/* Remove custom cursor artifact */
+body, a, button {
+  cursor: default;
+}
 
-    /* ------------------------------ */
-    /*            PAGE BASE           */
-    /* ------------------------------ */
+/* ---------------- LOADING BAR ---------------- */
+#loading-bar {
+  background: #c0c0c0;
+  border: 2px solid #000;
+  width: 280px;
+  height: 22px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
+  animation: fadeout 1.2s ease-in-out forwards;
+  animation-delay: 2.1s;
+  overflow: hidden;
+}
 
-    body {
-      margin: 0;
-      padding: 20px;
-      background-color: #000;
-      font-family: "MS Sans Serif", Tahoma, sans-serif;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+#loading-bar .bar {
+  width: 0%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #008000,
+    #00cc00 6px,
+    #008000 12px
+  );
+  animation: load 2s linear forwards;
+}
 
-    /* ------------------------------ */
-    /*       FAKE WINDOWS 95 BAR      */
-    /* ------------------------------ */
+@keyframes load {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
 
-    #loading-bar {
-      background: #c0c0c0;
-      border: 2px solid #000;
-      width: 280px;
-      height: 22px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      padding: 2px;
-      box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
-      animation: fadeout 1.2s ease-in-out forwards;
-      animation-delay: 2s;
-      overflow: hidden;
-    }
+@keyframes fadeout {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+}
 
-    #loading-bar .bar {
-      width: 0%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        90deg,
-        #008000,
-        #00cc00 6px,
-        #008000 12px
-      );
-      animation: load 2s linear forwards;
-    }
+/* ---------------- MAIN FRAME ---------------- */
+.frame {
+  position: relative;
+  max-width: 1152px;
+  width: 100%;
+}
 
-    @keyframes load {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
+.frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    @keyframes fadeout {
-      to {
-        opacity: 0;
-        transform: translateY(-10px);
-        pointer-events: none;
-      }
-    }
+/* ---------------- HOTSPOTS ---------------- */
+.hotspot {
+  position: absolute;
+  text-decoration: none;
+  z-index: 5;
+}
 
-    /* ------------------------------ */
-    /*           MAIN IMAGE           */
-    /* ------------------------------ */
+/* Don't Click This */
+.dont-click-link {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  width: 25%;
+  height: 8%;
+}
 
-    .frame {
-      position: relative;
-      max-width: 1152px;
-      width: 100%;
-    }
+/* ICON HOTSPOTS */
+.hotspot-bio     { left: 9%;  top: 39%; width: 10%; height: 12%; }
+.hotspot-cv      { left: 28%; top: 39%; width: 10%; height: 12%; }
+.hotspot-work    { left: 47%; top: 39%; width: 13%; height: 12%; }
+.hotspot-press   { left: 27%; top: 58%; width: 13%; height: 12%; }
+.hotspot-contact { left: 8%;  top: 58%; width: 13%; height: 12%; }
 
-    .frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+/* ---------------- NAV LINKS ---------------- */
+.nav-links {
+  margin-top: 14px;
+  font-size: 14px;
+  text-align: center;
+}
 
-    /* ------------------------------ */
-    /*            HOTSPOTS            */
-    /* ------------------------------ */
+.nav-links a {
+  color: #9ad1ff;
+  text-decoration: underline;
+  margin: 0 8px;
+}
 
-    .hotspot {
-      position: absolute;
-      text-decoration: none;
-      z-index: 10;
-    }
+.nav-links a:hover {
+  text-decoration: none;
+}
 
-    /* Top row */
-    .hotspot-bio {
-      left: 9%;
-      top: 39%;
-      width: 10%;
-      height: 12%;
-    }
+/* ---------------- CONTENT SECTIONS ---------------- */
+section {
+  max-width: 800px;
+  background: #111;
+  padding: 28px;
+  margin-top: 40px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1.5;
+}
 
-    .hotspot-cv {
-      left: 28%;
-      top: 39%;
-      width: 10%;
-      height: 12%;
-    }
+section h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
 
-    .hotspot-work {
-      left: 47%;
-      top: 39%;
-      width: 13%;
-      height: 12%;
-    }
+a { color: #9ad1ff; }
 
-    /* Bottom row */
-    .hotspot-press {
-      left: 9%;
-      top: 58%;
-      width: 13%;
-      height: 12%;
-    }
+/* ---------------- CRT SCANLINES ---------------- */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      rgba(255,255,255,0.04) 0,
+      rgba(255,255,255,0.04) 1px,
+      rgba(0,0,0,0.04) 2px
+    );
+  mix-blend-mode: overlay;
+  z-index: 9999;
+}
 
-    .hotspot-contact {
-      left: 28%;
-      top: 58%;
-      width: 13%;
-      height: 12%;
-    }
-
-    /* DON'T CLICK hotspot */
-    .dont-click-link {
-      position: absolute;
-      bottom: 9%;
-      right: 9%;
-      width: 22%;
-      height: 9%;
-      text-decoration: none;
-      z-index: 10;
-    }
-
-    /* ------------------------------ */
-    /*      EXTRA LASER EFFECT        */
-    /* ------------------------------ */
-
-    .laser {
-      position: absolute;
-      width: 24%;
-      height: 3%;
-      background: radial-gradient(circle at left,
-        rgba(0,255,0,0.9) 0,
-        rgba(0,255,0,0.5) 30%,
-        rgba(0,255,0,0) 70%
-      );
-      animation: flicker 0.09s infinite alternate;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0.7;
-    }
-
-    .laser-left {
-      top: 42%;
-      left: 64%;
-    }
-
-    .laser-right {
-      top: 42%;
-      left: 76%;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 0.4; }
-      100% { opacity: 1; }
-    }
-
-    /* ------------------------------ */
-    /*         CRT OVERLAY            */
-    /* ------------------------------ */
-
-    .crt-overlay {
-      pointer-events: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        repeating-linear-gradient(
-          rgba(255,255,255,0.04) 0px,
-          rgba(255,255,255,0.04) 1px,
-          rgba(0,0,0,0.04) 2px
-        );
-      mix-blend-mode: overlay;
-      z-index: 5000;
-    }
-
-    /* ------------------------------ */
-    /*         NAV + SECTIONS         */
-    /* ------------------------------ */
-
-    .nav-links {
-      margin-top: 14px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .nav-links a {
-      color: #9ad1ff;
-      text-decoration: underline;
-      margin: 0 8px;
-    }
-
-    section {
-      max-width: 800px;
-      background: #111;
-      padding: 28px;
-      margin-top: 40px;
-      border: 1px solid #444;
-      border-radius: 6px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    /* ------------------------------ */
-    /*     FUN PIXEL MOUSE CURSOR     */
-    /* ------------------------------ */
-
-    body, a, button {
-      cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
-    }
-
+/* ---------------- SCREENREADER ---------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
   </style>
 </head>
 
 <body>
 
-  <!-- Lightning Layer -->
-  <div class="lightning"></div>
+<!-- Lightning overlay -->
+<img src="lightning.png" class="lightning" alt="">
 
-  <!-- Fake Windows 95 Loading Bar -->
-  <div id="loading-bar">
-    <div class="bar"></div>
+<!-- Loading bar -->
+<div id="loading-bar"><div class="bar"></div></div>
+
+<!-- Main framed PNG -->
+<div class="frame">
+  <img src="homepage.png" alt="Retro Windows 95-style homepage for filmmaker Jen Markowitz.">
+
+  <a class="dont-click-link" href="https://beesbeesbeesbees.com/" target="_blank"></a>
+
+  <a class="hotspot hotspot-bio" href="#bio"></a>
+  <a class="hotspot hotspot-cv" href="#cv"></a>
+  <a class="hotspot hotspot-work" href="#work"></a>
+  <a class="hotspot hotspot-press" href="#press"></a>
+  <a class="hotspot hotspot-contact" href="#contact"></a>
+
+  <div class="sr-only">
+    Jen Markowitz, Director, Producer, Writer.
+    Use the icons or links below for Bio, CV, Selected Work, Press, and Contact.
   </div>
+</div>
 
-  <!-- Main Image Frame -->
-  <div class="frame">
-    <img src="homepage.png" alt="Retro Windows 95 homepage for filmmaker Jen Markowitz featuring icons and a metal demon.">
+<!-- Backup navigation -->
+<div class="nav-links">
+  <a href="#bio">Bio</a>
+  <a href="#cv">CV</a>
+  <a href="#work">Selected Work</a>
+  <a href="#press">Press</a>
+  <a href="#contact">Contact</a>
+</div>
 
-    <!-- DON'T CLICK THIS hotspot -->
-    <a class="dont-click-link" href="https://beesbeesbeesbees.com/" target="_blank"></a>
+<section id="bio">
+  <h2>Bio</h2>
+  <p>Jen Markowitz is an award winning creative in the film and television space, and is experienced in documentary, scripted, and competition reality.</p>
+</section>
 
-    <!-- Icons -->
-    <a class="hotspot hotspot-bio" href="#bio"></a>
-    <a class="hotspot hotspot-cv" href="#cv"></a>
-    <a class="hotspot hotspot-work" href="#work"></a>
-    <a class="hotspot hotspot-press" href="#press"></a>
-    <a class="hotspot hotspot-contact" href="#contact"></a>
+<section id="cv">
+  <h2>CV</h2>
+  <p><a href="Jen Markowitz CV.July 2025 (1).pdf" target="_blank">Download my CV (PDF)</a></p>
+</section>
 
-    <!-- Laser Glow -->
-    <div class="laser laser-left"></div>
-    <div class="laser laser-right"></div>
-  </div>
+<section id="work">
+  <h2>Selected Work</h2>
+  <p><a href="https://www.youtube.com/watch?v=KE3CIyutfbY" target="_blank">Project 1</a></p>
+  <p><a href="https://www.youtube.com/watch?v=IWYTy60rNMU" target="_blank">Project 2</a></p>
+  <p><a href="https://www.youtube.com/watch?v=awx6EQ4p0HE&t=77s" target="_blank">Project 3</a></p>
+</section>
 
-  <!-- Backup Text Navigation -->
-  <div class="nav-links">
-    <a href="#bio">Bio</a>
-    <a href="#cv">CV</a>
-    <a href="#work">Selected Work</a>
-    <a href="#press">Press</a>
-    <a href="#contact">Contact</a>
-  </div>
+<section id="press">
+  <h2>Press</h2>
+  <p>Add press links, articles, festivals, awards, interviews, etc. here.</p>
+</section>
 
-  <!-- Sections -->
-  <section id="bio">
-    <h2>Bio</h2>
-    <p>Jen Markowitz is an award winning creative in the film and television space...</p>
-  </section>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:jenmarkowitz@gmail.com">jenmarkowitz@gmail.com</a></p>
+  <p>Instagram: <a href="https://instagram.com/jen.markowitz" target="_blank">@jen.markowitz</a></p>
+</section>
 
-  <section id="cv">
-    <h2>CV</h2>
-    <p><a href="Jen Markowitz CV.July 2025 (1).pdf" target="_blank">Download CV</a></p>
-  </section>
-
-  <section id="work">
-    <h2>Selected Work</h2>
-    <p><a href="https://www.youtube.com/watch?v=KE3CIyutfbY" target="_blank">Project 1</a></p>
-    <p><a href="https://www.youtube.com/watch?v=IWYTy60rNMU" target="_blank">Project 2</a></p>
-    <p><a href="https://www.youtube.com/watch?v=awx6EQ4p0HE&t=77s" target="_blank">Project 3</a></p>
-  </section>
-
-  <section id="press">
-    <h2>Press</h2>
-    <p>Press links coming soon.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:jenmarkowitz@gmail.com">jenmarkowitz@gmail.com</a></p>
-    <p>Instagram: <a href="https://instagram.com/jen.markowitz" target="_blank">@jen.markowitz</a></p>
-  </section>
-
-  <div class="crt-overlay"></div>
+<div class="crt-overlay"></div>
 
 </body>
 </html>
