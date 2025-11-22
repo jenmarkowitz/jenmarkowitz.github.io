@@ -6,6 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* LIGHTNING OVERLAY */
+.lightning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* so you can click through it */
+  opacity: 0;
+  animation: lightningFlash 4s infinite;
+  mix-blend-mode: screen; /* makes bright lightning blend into colors */
+}
+
+@keyframes lightningFlash {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.9; }
+  10% { opacity: 0; }
+  18% { opacity: 0.6; }
+  20% { opacity: 0; }
+}
+
     /* BASIC PAGE LAYOUT */
     body {
       margin: 0;
@@ -17,6 +38,8 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      <img src="lightning.png" class="lightning" alt="">
+
     }
 
     /* FAKE WINDOWS 95 LOADING BAR */
