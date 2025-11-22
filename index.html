@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Jen Markowitz – Home Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    /* BASIC PAGE LAYOUT */
     body {
       margin: 0;
       padding: 20px;
@@ -13,11 +16,55 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
+    /* FAKE WINDOWS 95 LOADING BAR */
+    #loading-bar {
+      background: #c0c0c0;
+      border: 2px solid #000;
+      width: 280px;
+      height: 22px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      padding: 2px;
+      box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
+      animation: fadeout 1.2s ease-in-out forwards;
+      animation-delay: 2.1s;
+      overflow: hidden;
+    }
+
+    #loading-bar .bar {
+      width: 0%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        #008000,
+        #00cc00 6px,
+        #008000 12px
+      );
+      animation: load 2s linear forwards;
+    }
+
+    @keyframes load {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    @keyframes fadeout {
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+      }
+    }
+
+    /* MAIN FRAME WITH IMAGE + HOTSPOTS */
     .frame {
       position: relative;
-      max-width: 768px;
+      max-width: 1152px;        /* matches your art’s aspect */
+      width: 100%;
     }
 
     .frame img {
@@ -26,19 +73,64 @@
       display: block;
     }
 
-    /* Invisible hotspot over "Don't Click This" */
+    /* INVISIBLE HOTSPOT OVER "DON'T CLICK THIS" TEXT */
     .dont-click-link {
       position: absolute;
-      bottom: 6%;
+      bottom: 8%;
       right: 8%;
-      width: 30%;
-      height: 6%;
+      width: 26%;
+      height: 8%;
       text-decoration: none;
+      z-index: 5;
     }
 
-    /* Text nav below image */
+    /* OPTIONAL: HOTSPOTS OVER ICONS (approximate – tweak as needed) */
+    .hotspot {
+      position: absolute;
+      text-decoration: none;
+      z-index: 5;
+    }
+
+    /* Top row icons */
+    .hotspot-bio {
+      left: 9%;
+      top: 39%;
+      width: 10%;
+      height: 12%;
+    }
+
+    .hotspot-cv {
+      left: 28%;
+      top: 39%;
+      width: 10%;
+      height: 12%;
+    }
+
+    .hotspot-work {
+      left: 47%;
+      top: 39%;
+      width: 13%;
+      height: 12%;
+    }
+
+    /* Bottom row icons */
+    .hotspot-press {
+      left: 27%;
+      top: 58%;
+      width: 13%;
+      height: 12%;
+    }
+
+    .hotspot-contact {
+      left: 8%;
+      top: 58%;
+      width: 13%;
+      height: 12%;
+    }
+
+    /* NAV LINKS BELOW IMAGE */
     .nav-links {
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 14px;
       text-align: center;
     }
@@ -53,13 +145,13 @@
       text-decoration: none;
     }
 
-    /* Section styling */
+    /* SECTIONS FOR SCROLL-TO CONTENT */
     section {
-      max-width: 768px;
-      background: #111;
-      padding: 30px;
+      max-width: 800px;
+      background: #111111;
+      padding: 28px;
       margin-top: 40px;
-      border: 1px solid #444;
+      border: 1px solid #444444;
       border-radius: 6px;
       font-size: 15px;
       line-height: 1.5;
@@ -69,22 +161,137 @@
       margin-top: 0;
       font-size: 20px;
     }
+
+    a {
+      color: #9ad1ff;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    /* CRT SCANLINE OVERLAY */
+    .crt-overlay {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        repeating-linear-gradient(
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          rgba(0, 0, 0, 0.04) 2px
+        );
+      mix-blend-mode: overlay;
+      z-index: 9999;
+    }
+
+    /* FUN PIXEL CURSOR */
+    body, a, button {
+      cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+    }
+
+    /* GREEN LASER GLOW OVERLAY (subtle, on top of existing lasers) */
+    .laser {
+      position: absolute;
+      width: 24%;
+      height: 3%;
+      background: radial-gradient(circle at left,
+        rgba(0, 255, 0, 0.9) 0,
+        rgba(0, 255, 0, 0.5) 30%,
+        rgba(0, 255, 0, 0) 70%);
+      transform-origin: left center;
+      animation: flicker 0.09s infinite alternate;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0.7;
+    }
+
+    /* approximate positions over the demon’s eyes – tweak if needed */
+    .laser-left {
+      top: 42%;
+      left: 64%;
+    }
+
+    .laser-right {
+      top: 42%;
+      left: 76%;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.9; }
+    }
+
+    /* SCREENREADER-ONLY TEXT */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* MOBILE TWEAKS */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      section {
+        padding: 20px;
+        margin-top: 30px;
+      }
+      .nav-links {
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Main image frame -->
-  <div class="frame">
-    <img src="homepage.png" alt="Jen Markowitz homepage">
-
-    <a class="dont-click-link"
-       href="https://beesbeesbeesbees.com/"
-       target="_blank">
-    </a>
+  <!-- Fake Win95 loading bar -->
+  <div id="loading-bar">
+    <div class="bar"></div>
   </div>
 
-  <!-- Navigation links below the image -->
+  <!-- Main framed image -->
+  <div class="frame">
+    <img src="homepage.png" alt="Retro Windows 95-style homepage for filmmaker Jen Markowitz with metal demon and navigation icons.">
+
+    <!-- Hotspot over 'Don't Click This' -->
+    <a
+      class="dont-click-link"
+      href="https://beesbeesbeesbees.com/"
+      target="_blank"
+      aria-label="Don't Click This"
+    ></a>
+
+    <!-- Icon hotspots (scroll to sections below) -->
+    <a class="hotspot hotspot-bio" href="#bio"></a>
+    <a class="hotspot hotspot-cv" href="#cv"></a>
+    <a class="hotspot hotspot-work" href="#work"></a>
+    <a class="hotspot hotspot-press" href="#press"></a>
+    <a class="hotspot hotspot-contact" href="#contact"></a>
+
+    <!-- Laser glow overlays -->
+    <div class="laser laser-left"></div>
+    <div class="laser laser-right"></div>
+
+    <!-- Screenreader-friendly text description -->
+    <div class="sr-only">
+      Jen Markowitz, Director, Producer, Writer. 
+      Use the icons or the links below for Bio, CV, Selected Work, Press, and Contact.
+    </div>
+  </div>
+
+  <!-- Link row under the image (backup navigation) -->
   <div class="nav-links">
     <a href="#bio">Bio</a>
     <a href="#cv">CV</a>
@@ -93,16 +300,21 @@
     <a href="#contact">Contact</a>
   </div>
 
-  <!-- SCROLL-TO SECTIONS -->
+  <!-- LONG-SCROLL SECTIONS -->
 
   <section id="bio">
     <h2>Bio</h2>
-    <p>Jen Markowitz is an award winning creative in the film and television space, and is experienced in documentary, scripted, and competition reality.</p>
+    <p>
+      Jen Markowitz is an award winning creative in the film and television space,
+      and is experienced in documentary, scripted, and competition reality.
+    </p>
   </section>
 
   <section id="cv">
     <h2>CV</h2>
-    <p><a href="jen-markowitz-cv.pdf" target="_blank">Download my CV</a></p>
+    <p>
+      <a href="jen-markowitz-cv.pdf" target="_blank">Download my CV (PDF)</a>
+    </p>
   </section>
 
   <section id="work">
@@ -114,7 +326,7 @@
 
   <section id="press">
     <h2>Press</h2>
-    <p>Add press items here.</p>
+    <p>Add press links, articles, festivals, awards, interviews, etc. here when you’re ready.</p>
   </section>
 
   <section id="contact">
@@ -122,6 +334,9 @@
     <p>Email: <a href="mailto:jenmarkowitz@gmail.com">jenmarkowitz@gmail.com</a></p>
     <p>Instagram: <a href="https://instagram.com/jen.markowitz" target="_blank">@jen.markowitz</a></p>
   </section>
+
+  <!-- CRT overlay -->
+  <div class="crt-overlay"></div>
 
 </body>
 </html>
