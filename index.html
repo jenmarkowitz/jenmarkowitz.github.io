@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Jen Markowitz – Home Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    /* LIGHTNING OVERLAY */
-.lightning {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none; /* so you can click through it */
-  opacity: 0;
-  animation: lightningFlash 4s infinite;
-  mix-blend-mode: screen; /* makes bright lightning blend into colors */
-}
 
-@keyframes lightningFlash {
-  0%, 100% { opacity: 0; }
-  8% { opacity: 0.9; }
-  10% { opacity: 0; }
-  18% { opacity: 0.6; }
-  20% { opacity: 0; }
-}
+    /* ------------------------------ */
+    /*  LIGHTNING ANIMATION OVERLAY   */
+    /* ------------------------------ */
 
-    /* BASIC PAGE LAYOUT */
+    .lightning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0;
+      background-image: url("lightning.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      animation: lightningFlash 4s infinite;
+      mix-blend-mode: screen;
+      z-index: 2000;
+    }
+
+    @keyframes lightningFlash {
+      0%, 100% { opacity: 0; }
+      6% { opacity: 0.9; }
+      9% { opacity: 0; }
+      15% { opacity: 0.5; }
+      17% { opacity: 0; }
+    }
+
+    /* ------------------------------ */
+    /*            PAGE BASE           */
+    /* ------------------------------ */
+
     body {
       margin: 0;
       padding: 20px;
-      background-color: #000000;
+      background-color: #000;
       font-family: "MS Sans Serif", Tahoma, sans-serif;
-      color: #ffffff;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      <img src="lightning.png" class="lightning" alt="">
-
     }
 
-    /* FAKE WINDOWS 95 LOADING BAR */
+    /* ------------------------------ */
+    /*       FAKE WINDOWS 95 BAR      */
+    /* ------------------------------ */
+
     #loading-bar {
       background: #c0c0c0;
       border: 2px solid #000;
@@ -52,9 +64,9 @@
       display: flex;
       align-items: center;
       padding: 2px;
-      box-shadow: inset -1px -1px #ffffff, inset 1px 1px #808080;
+      box-shadow: inset -1px -1px #fff, inset 1px 1px #808080;
       animation: fadeout 1.2s ease-in-out forwards;
-      animation-delay: 2.1s;
+      animation-delay: 2s;
       overflow: hidden;
     }
 
@@ -83,10 +95,13 @@
       }
     }
 
-    /* MAIN FRAME WITH IMAGE + HOTSPOTS */
+    /* ------------------------------ */
+    /*           MAIN IMAGE           */
+    /* ------------------------------ */
+
     .frame {
       position: relative;
-      max-width: 1152px;        /* matches your art’s aspect */
+      max-width: 1152px;
       width: 100%;
     }
 
@@ -96,25 +111,17 @@
       display: block;
     }
 
-    /* INVISIBLE HOTSPOT OVER "DON'T CLICK THIS" TEXT */
-    .dont-click-link {
-      position: absolute;
-      bottom: 8%;
-      right: 8%;
-      width: 26%;
-      height: 8%;
-      text-decoration: none;
-      z-index: 5;
-    }
+    /* ------------------------------ */
+    /*            HOTSPOTS            */
+    /* ------------------------------ */
 
-    /* OPTIONAL: HOTSPOTS OVER ICONS (approximate – tweak as needed) */
     .hotspot {
       position: absolute;
       text-decoration: none;
-      z-index: 5;
+      z-index: 10;
     }
 
-    /* Top row icons */
+    /* Top row */
     .hotspot-bio {
       left: 9%;
       top: 39%;
@@ -136,103 +143,52 @@
       height: 12%;
     }
 
-    /* Bottom row icons */
+    /* Bottom row */
     .hotspot-press {
-      left: 27%;
+      left: 9%;
       top: 58%;
       width: 13%;
       height: 12%;
     }
 
     .hotspot-contact {
-      left: 8%;
+      left: 28%;
       top: 58%;
       width: 13%;
       height: 12%;
     }
 
-    /* NAV LINKS BELOW IMAGE */
-    .nav-links {
-      margin-top: 14px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .nav-links a {
-      color: #9ad1ff;
-      text-decoration: underline;
-      margin: 0 8px;
-    }
-
-    .nav-links a:hover {
+    /* DON'T CLICK hotspot */
+    .dont-click-link {
+      position: absolute;
+      bottom: 9%;
+      right: 9%;
+      width: 22%;
+      height: 9%;
       text-decoration: none;
+      z-index: 10;
     }
 
-    /* SECTIONS FOR SCROLL-TO CONTENT */
-    section {
-      max-width: 800px;
-      background: #111111;
-      padding: 28px;
-      margin-top: 40px;
-      border: 1px solid #444444;
-      border-radius: 6px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
+    /* ------------------------------ */
+    /*      EXTRA LASER EFFECT        */
+    /* ------------------------------ */
 
-    section h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
-
-    a {
-      color: #9ad1ff;
-    }
-
-    a:hover {
-      text-decoration: none;
-    }
-
-    /* CRT SCANLINE OVERLAY */
-    .crt-overlay {
-      pointer-events: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        repeating-linear-gradient(
-          rgba(255, 255, 255, 0.04) 0,
-          rgba(255, 255, 255, 0.04) 1px,
-          rgba(0, 0, 0, 0.04) 2px
-        );
-      mix-blend-mode: overlay;
-      z-index: 9999;
-    }
-
-    /* FUN PIXEL CURSOR */
-    body, a, button {
-      cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
-    }
-
-    /* GREEN LASER GLOW OVERLAY (subtle, on top of existing lasers) */
     .laser {
       position: absolute;
       width: 24%;
       height: 3%;
       background: radial-gradient(circle at left,
-        rgba(0, 255, 0, 0.9) 0,
-        rgba(0, 255, 0, 0.5) 30%,
-        rgba(0, 255, 0, 0) 70%);
-      transform-origin: left center;
+        rgba(0,255,0,0.9) 0,
+        rgba(0,255,0,0.5) 30%,
+        rgba(0,255,0,0) 70%
+      );
       animation: flicker 0.09s infinite alternate;
+      mix-blend-mode: screen;
       pointer-events: none;
-      z-index: 4;
+      z-index: 5;
       opacity: 0.7;
     }
 
-    /* approximate positions over the demon’s eyes – tweak if needed */
     .laser-left {
       top: 42%;
       left: 64%;
@@ -245,76 +201,98 @@
 
     @keyframes flicker {
       0% { opacity: 0.4; }
-      100% { opacity: 0.9; }
+      100% { opacity: 1; }
     }
 
-    /* SCREENREADER-ONLY TEXT */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    /* ------------------------------ */
+    /*         CRT OVERLAY            */
+    /* ------------------------------ */
+
+    .crt-overlay {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        repeating-linear-gradient(
+          rgba(255,255,255,0.04) 0px,
+          rgba(255,255,255,0.04) 1px,
+          rgba(0,0,0,0.04) 2px
+        );
+      mix-blend-mode: overlay;
+      z-index: 5000;
     }
 
-    /* MOBILE TWEAKS */
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-      section {
-        padding: 20px;
-        margin-top: 30px;
-      }
-      .nav-links {
-        font-size: 13px;
-      }
+    /* ------------------------------ */
+    /*         NAV + SECTIONS         */
+    /* ------------------------------ */
+
+    .nav-links {
+      margin-top: 14px;
+      font-size: 14px;
+      text-align: center;
     }
+
+    .nav-links a {
+      color: #9ad1ff;
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    section {
+      max-width: 800px;
+      background: #111;
+      padding: 28px;
+      margin-top: 40px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------ */
+    /*     FUN PIXEL MOUSE CURSOR     */
+    /* ------------------------------ */
+
+    body, a, button {
+      cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Fake Win95 loading bar -->
+  <!-- Lightning Layer -->
+  <div class="lightning"></div>
+
+  <!-- Fake Windows 95 Loading Bar -->
   <div id="loading-bar">
     <div class="bar"></div>
   </div>
 
-  <!-- Main framed image -->
+  <!-- Main Image Frame -->
   <div class="frame">
-    <img src="homepage.png" alt="Retro Windows 95-style homepage for filmmaker Jen Markowitz with metal demon and navigation icons.">
+    <img src="homepage.png" alt="Retro Windows 95 homepage for filmmaker Jen Markowitz featuring icons and a metal demon.">
 
-    <!-- Hotspot over 'Don't Click This' -->
-    <a
-      class="dont-click-link"
-      href="https://beesbeesbeesbees.com/"
-      target="_blank"
-      aria-label="Don't Click This"
-    ></a>
+    <!-- DON'T CLICK THIS hotspot -->
+    <a class="dont-click-link" href="https://beesbeesbeesbees.com/" target="_blank"></a>
 
-    <!-- Icon hotspots (scroll to sections below) -->
+    <!-- Icons -->
     <a class="hotspot hotspot-bio" href="#bio"></a>
     <a class="hotspot hotspot-cv" href="#cv"></a>
     <a class="hotspot hotspot-work" href="#work"></a>
     <a class="hotspot hotspot-press" href="#press"></a>
     <a class="hotspot hotspot-contact" href="#contact"></a>
 
-    <!-- Laser glow overlays -->
+    <!-- Laser Glow -->
     <div class="laser laser-left"></div>
     <div class="laser laser-right"></div>
-
-    <!-- Screenreader-friendly text description -->
-    <div class="sr-only">
-      Jen Markowitz, Director, Producer, Writer. 
-      Use the icons or the links below for Bio, CV, Selected Work, Press, and Contact.
-    </div>
   </div>
 
-  <!-- Link row under the image (backup navigation) -->
+  <!-- Backup Text Navigation -->
   <div class="nav-links">
     <a href="#bio">Bio</a>
     <a href="#cv">CV</a>
@@ -323,21 +301,15 @@
     <a href="#contact">Contact</a>
   </div>
 
-  <!-- LONG-SCROLL SECTIONS -->
-
+  <!-- Sections -->
   <section id="bio">
     <h2>Bio</h2>
-    <p>
-      Jen Markowitz is an award winning creative in the film and television space,
-      and is experienced in documentary, scripted, and competition reality.
-    </p>
+    <p>Jen Markowitz is an award winning creative in the film and television space...</p>
   </section>
 
   <section id="cv">
     <h2>CV</h2>
-    <p>
-      <a href="Jen Markowitz CV.July 2025 (1).pdf" target="_blank">Download my CV (PDF)</a>
-    </p>
+    <p><a href="Jen Markowitz CV.July 2025 (1).pdf" target="_blank">Download CV</a></p>
   </section>
 
   <section id="work">
@@ -349,7 +321,7 @@
 
   <section id="press">
     <h2>Press</h2>
-    <p>Add press links, articles, festivals, awards, interviews, etc. here when you’re ready.</p>
+    <p>Press links coming soon.</p>
   </section>
 
   <section id="contact">
@@ -358,7 +330,6 @@
     <p>Instagram: <a href="https://instagram.com/jen.markowitz" target="_blank">@jen.markowitz</a></p>
   </section>
 
-  <!-- CRT overlay -->
   <div class="crt-overlay"></div>
 
 </body>
